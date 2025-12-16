@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "sqlite3": "^5.1.7",
+    "ws": "^8.18.3"
+  },
+  "name": "new-folder-(6)",
+  "version": "1.0.0",
+  "main": "gatevalve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": ""
+}
