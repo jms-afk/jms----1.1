@@ -1990,17 +1990,11 @@ process.on('SIGINT', () => {
 });
 
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'http://localhost:5500',
-        'http://127.0.0.1:5500',
-        'https://jms-afk.github.io/jms----1.1',      // ⭐ Without trailing slash
-        'https://jms-afk.github.io/jms----1.1/',     // ⭐ With trailing slash
-        'https://jms-afk.github.io',                  // ⭐ Root domain (just in case)
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
