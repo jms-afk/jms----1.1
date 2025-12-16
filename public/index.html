@@ -1386,176 +1386,183 @@
           crossorigin=""></script>
   <script>
     // ==================== API SERVICE ====================
-    const APIService = {
-      baseURL: 'http://localhost:3000/api',
-      
-      async request(endpoint, options = {}) {
+  const APIService = {
+  baseURL: `${window.location.origin}/api`,
+
+  async request(endpoint, options = {}) {
+    try {
+      const response = await fetch(`${this.baseURL}${endpoint}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          ...(options.headers || {})
+        },
+        ...options
+      });
+
+      if (!response.ok) {
+        let errorMessage = `HTTP ${response.status}`;
         try {
-          const response = await fetch(`${this.baseURL}${endpoint}`, {
-            headers: {
-              'Content-Type': 'application/json',
-              ...options.headers
-            },
-            ...options
-          });
-          
-          if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error || `HTTP ${response.status}`);
-          }
-          
-          return await response.json();
-        } catch (error) {
-          console.error('API Request Error:', error);
-          throw error;
-        }
-      },
-      
-      // Tank Endpoints
-      async getTanks() {
-        return this.request('/tanks');
-      },
-      
-      async getTank(tankId) {
-        return this.request(`/tank/${tankId}`);
-      },
-      
-      async createTank(tankData) {
-        return this.request('/tank', {
-          method: 'POST',
-          body: JSON.stringify(tankData)
-        });
-      },
-      
-      async updateTank(tankId, tankData) {
-        return this.request(`/tank/${tankId}`, {
-          method: 'PUT',
-          body: JSON.stringify(tankData)
-        });
-      },
-      
-      async deleteTank(tankId) {
-        return this.request(`/tank/${tankId}`, {
-          method: 'DELETE'
-        });
-      },
-      
-      async toggleTank(tankId, isActive) {
-        return this.updateTank(tankId, { isActive });
-      },
-      
-      // Valve Endpoints
-      async getValves() {
-        return this.request('/valves');
-      },
-      
-      async getValve(valveId) {
-        return this.request(`/valve/${valveId}`);
-      },
-      
-      async createValve(valveData) {
-        return this.request('/valve', {
-          method: 'POST',
-          body: JSON.stringify(valveData)
-        });
-      },
-      
-      async updateValve(valveId, valveData) {
-        return this.request(`/valve/${valveId}`, {
-          method: 'PUT',
-          body: JSON.stringify(valveData)
-        });
-      },
-      
-      async deleteValve(valveId) {
-        return this.request(`/valve/${valveId}`, {
-          method: 'DELETE'
-        });
-      },
-      
-      async toggleValve(valveId, isOpen) {
-        return this.request(`/valve/${valveId}/toggle`, {
-          method: 'PATCH'
-        });
-      },
-      
-      // Pipeline Endpoints
-      async getPipelines() {
-        return this.request('/pipelines');
-      },
-      
-      async getPipeline(pipelineId) {
-        return this.request(`/pipeline/${pipelineId}`);
-      },
-      
-      async createPipeline(pipelineData) {
-        return this.request('/pipeline', {
-          method: 'POST',
-          body: JSON.stringify(pipelineData)
-        });
-      },
-      
-      async updatePipeline(pipelineId, pipelineData) {
-        return this.request(`/pipeline/${pipelineId}`, {
-          method: 'PUT',
-          body: JSON.stringify(pipelineData)
-        });
-      },
-      
-      async deletePipeline(pipelineId) {
-        return this.request(`/pipeline/${pipelineId}`, {
-          method: 'DELETE'
-        });
-      },
-      
-      // History Endpoints
-      async getHistory(deviceId, deviceType) {
-        return this.request(`/history/${deviceId}?type=${deviceType}`);
-      },
-      
-      async getHistoryRange(deviceId, deviceType, start, end) {
-        return this.request(`/history/${deviceId}/range?type=${deviceType}&start=${start}&end=${end}`);
-      },
-      
-      async getLatestHistory(deviceId, deviceType) {
-        return this.request(`/history/${deviceId}/latest?type=${deviceType}`);
-      },
-      
-      // System Endpoints
-      async pollAll() {
-        return this.request('/poll/all');
-      },
-      
-      async getFlowData() {
-        return this.request('/flow/calculate');
-      },
-      
-      async getSupplyOverview() {
-        return this.request('/supply/overview');
-      },
-      
-      // Sensor Data Endpoints
-      async getSensorData(deviceId) {
-        return this.request(`/sensor/${deviceId}`);
-      },
-      
-      async getLiveSensorData(deviceId) {
-        return this.request(`/sensor/${deviceId}/live`);
-      },
-      
-      // Data Import/Export
-      async exportData() {
-        const response = await fetch(`${this.baseURL}/export/all`);
-        return await response.json();
-      },
-      
-      async importData(data) {
-        return this.request('/import', {
-          method: 'POST',
-          body: JSON.stringify(data)
-        });
+          const error = await response.json();
+          errorMessage = error.error || errorMessage;
+        } catch (_) {}
+        throw new Error(errorMessage);
       }
-    };
+
+      return await response.json();
+    } catch (error) {
+      console.error('❌ API Request Error:', error);
+      throw error;
+    }
+  },
+
+  // ==================== TANKS ====================
+  getTanks() {
+    return this.request('/tanks');
+  },
+
+  getTank(tankId) {
+    return this.request(`/tank/${tankId}`);
+  },
+
+  createTank(tankData) {
+    return this.request('/tank', {
+      method: 'POST',
+      body: JSON.stringify(tankData)
+    });
+  },
+
+  updateTank(tankId, tankData) {
+    return this.request(`/tank/${tankId}`, {
+      method: 'PUT',
+      body: JSON.stringify(tankData)
+    });
+  },
+
+  deleteTank(tankId) {
+    return this.request(`/tank/${tankId}`, {
+      method: 'DELETE'
+    });
+  },
+
+  toggleTank(tankId, isActive) {
+    return this.updateTank(tankId, { isActive });
+  },
+
+  // ==================== VALVES ====================
+  getValves() {
+    return this.request('/valves');
+  },
+
+  getValve(valveId) {
+    return this.request(`/valve/${valveId}`);
+  },
+
+  createValve(valveData) {
+    return this.request('/valve', {
+      method: 'POST',
+      body: JSON.stringify(valveData)
+    });
+  },
+
+  updateValve(valveId, valveData) {
+    return this.request(`/valve/${valveId}`, {
+      method: 'PUT',
+      body: JSON.stringify(valveData)
+    });
+  },
+
+  deleteValve(valveId) {
+    return this.request(`/valve/${valveId}`, {
+      method: 'DELETE'
+    });
+  },
+
+  toggleValve(valveId, isOpen) {
+    return this.request(`/valve/${valveId}/toggle`, {
+      method: 'PATCH'
+    });
+  },
+
+  // ==================== PIPELINES ====================
+  getPipelines() {
+    return this.request('/pipelines');
+  },
+
+  getPipeline(pipelineId) {
+    return this.request(`/pipeline/${pipelineId}`);
+  },
+
+  createPipeline(pipelineData) {
+    return this.request('/pipeline', {
+      method: 'POST',
+      body: JSON.stringify(pipelineData)
+    });
+  },
+
+  updatePipeline(pipelineId, pipelineData) {
+    return this.request(`/pipeline/${pipelineId}`, {
+      method: 'PUT',
+      body: JSON.stringify(pipelineData)
+    });
+  },
+
+  deletePipeline(pipelineId) {
+    return this.request(`/pipeline/${pipelineId}`, {
+      method: 'DELETE'
+    });
+  },
+
+  // ==================== HISTORY ====================
+  getHistory(deviceId, deviceType) {
+    return this.request(`/history/${deviceId}?type=${deviceType}`);
+  },
+
+  getHistoryRange(deviceId, deviceType, start, end) {
+    return this.request(
+      `/history/${deviceId}/range?type=${deviceType}&start=${start}&end=${end}`
+    );
+  },
+
+  getLatestHistory(deviceId, deviceType) {
+    return this.request(`/history/${deviceId}/latest?type=${deviceType}`);
+  },
+
+  // ==================== SYSTEM ====================
+  pollAll() {
+    return this.request('/poll/all');
+  },
+
+  getFlowData() {
+    return this.request('/flow/calculate');
+  },
+
+  getSupplyOverview() {
+    return this.request('/supply/overview');
+  },
+
+  // ==================== SENSOR ====================
+  getSensorData(deviceId) {
+    return this.request(`/sensor/${deviceId}`);
+  },
+
+  getLiveSensorData(deviceId) {
+    return this.request(`/sensor/${deviceId}/live`);
+  },
+
+  // ==================== IMPORT / EXPORT ====================
+  async exportData() {
+    const response = await fetch(`${this.baseURL}/export/all`);
+    if (!response.ok) throw new Error('Export failed');
+    return await response.json();
+  },
+
+  importData(data) {
+    return this.request('/import', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }
+};
 
 
 
