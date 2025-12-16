@@ -1979,12 +1979,29 @@ process.on('SIGINT', () => {
     });
 });
 
+app.use(cors({
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:5500',
+        'http://127.0.0.1:5500',
+        'https://jms-afk.github.io/jms----1.1',      // ⭐ Without trailing slash
+        'https://jms-afk.github.io/jms----1.1/',     // ⭐ With trailing slash
+        'https://jms-afk.github.io',                  // ⭐ Root domain (just in case)
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // ==================== START SERVER ====================
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, '0.0.0.0', () => {
     console.log('='.repeat(60));
     console.log('🚀 Water Pipeline Management System');
+    console.log(`✅ Server running on port ${PORT}`);
     console.log('='.repeat(60));
     console.log('📡 WebSocket: ws://localhost:3000');
     console.log('🔥 Firebase: Real-time Tank Monitoring');
