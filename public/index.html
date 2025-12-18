@@ -143,16 +143,16 @@
       border-radius: 2px;
     }
     .search {
-  position: absolute;
-  top: 16px;
-  left: 38%;
-  transform: translateX(-50%);
-  width: min(700px, 70vw);
-  z-index: 1000;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
+    position: absolute;
+    top: 16px;
+    left: 33%;
+    transform: translateX(-50%);
+    width: min(546px, 70vw);
+    z-index: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
 }
 
 .search > div:first-child {
@@ -754,14 +754,14 @@
     }
     
    .zoom {
-  position: absolute;
-  bottom: 20px;
-  right: 360px;  /* Supply dashboard width (320px) + gap (40px) */
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
-  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    bottom: 20px;
+    right: 360px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 1000;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Move with sidebar */
@@ -838,23 +838,23 @@
       margin: 0;
     }
     .connection-status {
-        position: absolute;
-        top: 16px;
-        right: 180px;  /* ← Give space for zoom buttons */
-        z-index: 1100;
-        background: rgba(255,255,255,.95);
-        padding: 2px 2px;
-        border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(0,0,0,.1);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        font-weight: 600;
-        backdrop-filter: blur(10px);
-        border: 2px solid transparent;
-        transition: all .3s;
-        }
+    position: absolute;
+    top: 16px;
+    right: 381px;
+    z-index: 1100;
+    background: rgba(255, 255, 255, .95);
+    padding: 2px 2px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+    transition: all .3s;
+}
 
         /* Adjust when sidebar opens */
         .sidebar.open ~ .connection-status {
@@ -994,7 +994,7 @@
 
 /* Move supply dashboard when sidebar opens */
 .sidebar.open ~ .supply-dashboard {
-  right: calc(480px + 30px);  /* sidebar width + margin */
+  right: calc(480px + 30px);
 }
     
     .supply-dashboard-header {
@@ -2958,6 +2958,28 @@ async function loadPipelines() {
     }
     
     sidebar.classList.add('open');
+
+// ⬇️ ADD THESE LINES BELOW ⬇️
+// Move supply dashboard when sidebar opens
+const supplyDashboard = document.getElementById('supplyDashboard');
+const connectionStatus = document.getElementById('connectionStatus');
+const zoomControls = document.querySelector('.zoom');
+
+if (supplyDashboard) {
+  supplyDashboard.style.transition = 'right 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+  supplyDashboard.style.right = 'calc(480px + 30px)'; // sidebar width + margin
+}
+
+if (connectionStatus) {
+  connectionStatus.style.transition = 'right 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+  connectionStatus.style.right = 'calc(480px + 190px)';
+}
+
+if (zoomControls) {
+  zoomControls.style.transition = 'right 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+  zoomControls.style.right = 'calc(480px + 370px)';
+}
+// ⬆️ END OF NEW CODE ⬆️
   } catch (error) {
     console.error('Error loading device details:', error);
     toast('❌ Failed to load device details');
@@ -3288,9 +3310,28 @@ function updateSidebarWithLiveData(tank, liveData) {
   });
   firebaseListeners.clear();
   
-  document.getElementById('sidebar').classList.remove('open');
+  const sidebar = document.getElementById('sidebar');
+  const supplyDashboard = document.getElementById('supplyDashboard');
+  const connectionStatus = document.getElementById('connectionStatus');
+  const zoomControls = document.querySelector('.zoom');
+  
+  sidebar.classList.remove('open');
+  
+  // Move supply dashboard back to original position
+  if (supplyDashboard) {
+    supplyDashboard.style.right = '20px';
+  }
+  
+  // Move connection status back
+  if (connectionStatus) {
+    connectionStatus.style.right = '381px';
+  }
+  
+  // Move zoom controls back
+  if (zoomControls) {
+    zoomControls.style.right = '360px';
+  }
 }
-
     // ==================== EDIT FUNCTIONS ====================
     function editTank(tankId) {
       const tank = tanks.find(t => t.tankId === tankId);
