@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AquaFlow Systems - Smart Water Management Solutions for sustainable infrastructure">
+    <title>AquaFlow Systems - Water Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{overflow-x:hidden;font-family:'Inter',sans-serif}.navbar{background:transparent!important;position:fixed;width:100%;z-index:1000;padding:20px 0;transition:background .3s ease}.navbar-brand{color:#fff!important;font-weight:700;font-size:1.8rem;text-shadow:2px 2px 4px rgba(0,0,0,.3);letter-spacing:-.5px}.nav-link{color:#fff!important;font-weight:500;margin:0 15px;transition:all .3s ease;text-shadow:1px 1px 2px rgba(0,0,0,.3)}.nav-link:hover{color:#4fc3f7!important;transform:translateY(-2px)}.hero-section{height:100vh;width:100%;position:relative;display:flex;align-items:center;justify-content:center;background: linear-gradient(rgb(19 45 72 / 60%), rgba(0, 80, 140, .6)), url(Cover.png) center / cover no-repeat;overflow:hidden}.hero-content{text-align:center;color:#fff;z-index:2;max-width:800px;padding:20px;animation:fadeInUp 1s ease-out}.hero-content h1{font-size:clamp(2rem,8vw,4.5rem);font-weight:800;margin-bottom:20px;text-shadow:3px 3px 6px rgba(0,0,0,.4);animation:slideDown 1s ease-out;letter-spacing:-1px;line-height:1.1}.hero-content p{font-size:clamp(1rem,3vw,1.4rem);margin-bottom:30px;text-shadow:2px 2px 4px rgba(0,0,0,.3);animation:fadeIn 1.5s ease-out;font-weight:400;max-width:700px;margin-left:auto;margin-right:auto}.hero-btn{padding:15px 40px;font-size:1.1rem;border:2px solid #fff;background:0 0;color:#fff;border-radius:50px;transition:all .4s ease;cursor:pointer;animation:fadeInUp 2s ease-out}.hero-btn:hover{background:#4fc3f7;border-color:#4fc3f7;transform:translateY(-5px);box-shadow:0 10px 30px rgba(79,195,247,.4)}@keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}@keyframes slideDown{from{opacity:0;transform:translateY(-50px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.features-section{background:linear-gradient(135deg,#0a0e27 0,#1a1f3a 50%,#0f1419 100%);padding:120px 0;position:relative;overflow:hidden}.features-section::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(33,150,243,.08) 0,transparent 70%);top:-400px;right:-400px;animation:pulse 8s ease-in-out infinite}.features-section::after{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(79,195,247,.06) 0,transparent 70%);bottom:-300px;left:-300px;animation:pulse 10s ease-in-out infinite}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.8}}.section-title{text-align:center;margin-bottom:80px;animation:fadeInUp 1s ease-out;position:relative;z-index:2}.section-title h2{font-size:clamp(2rem,6vw,3.5rem);color:#fff;font-weight:800;margin-bottom:20px;letter-spacing:-1px}.section-title p{color:#94a3b8;font-size:clamp(1rem,2.5vw,1.3rem);font-weight:400}.cards-slider{position:relative;max-width:1600px;margin:0 auto;padding:0 80px}.cards-wrapper{display:flex;overflow-x:auto;scroll-behavior:smooth;gap:40px;padding:30px 10px;scrollbar-width:thin;scrollbar-color:#2196f3 #1a1f3a}.cards-wrapper::-webkit-scrollbar{height:8px}.cards-wrapper::-webkit-scrollbar-track{background:#1a1f3a;border-radius:10px}.cards-wrapper::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#2196f3 0,#4fc3f7 100%);border-radius:10px}.cards-wrapper::-webkit-scrollbar-thumb:hover{background:linear-gradient(90deg,#1976d2 0,#29b6f6 100%)}.feature-card{min-width:min(910px,90vw);background:linear-gradient(145deg,#1e293b 0,#1a2332 100%);border-radius:24px;overflow:hidden;transition:all .5s cubic-bezier(.4,0,.2,1);box-shadow:0 20px 60px rgba(0,0,0,.5);cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.05)}.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(33,150,243,.15) 0,transparent 100%);opacity:0;transition:opacity .5s ease;z-index:1}.feature-card:hover{transform:translateY(-20px);box-shadow:0 30px 80px rgba(33,150,243,.25);border-color:rgba(79,195,247,.3)}.feature-card:hover::before{opacity:1}.card-image{width:100%;height:350px;overflow:hidden;position:relative}.card-image img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.4,0,.2,1)}.feature-card:hover .card-image img{transform:scale(1.15)}.card-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.8) 100%)}.card-content{padding:35px;position:relative;z-index:2}.card-icon{width:70px;height:70px;background:linear-gradient(135deg,#2196f3 0,#1976d2 100%);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:24px;box-shadow:0 8px 24px rgba(33,150,243,.4);transition:all .3s ease}.card-icon .material-icons{font-size:36px;color:#fff}.feature-card:hover .card-icon{transform:scale(1.1) rotate(5deg);box-shadow:0 12px 32px rgba(33,150,243,.6)}.card-content h3{color:#fff;font-size:1.75rem;font-weight:700;margin-bottom:16px;letter-spacing:-.5px}.card-content p{color:#94a3b8;font-size:1.05rem;line-height:1.7;margin-bottom:24px;font-weight:400}.card-badge{display:inline-block;padding:8px 18px;background:rgba(33,150,243,.15);color:#4fc3f7;border-radius:24px;font-size:.9rem;font-weight:600;border:1px solid rgba(79,195,247,.3);transition:all .3s ease}.feature-card:hover .card-badge{background:rgba(33,150,243,.25);border-color:rgba(79,195,247,.5)}.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#2196f300 0,#1976d200 100%);border:2px solid rgba(255,255,255,.1);width:60px;height:60px;border-radius:50%;color:#fff;font-size:1.5rem;cursor:pointer;z-index:10;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 8px 32px rgba(33,150,243,.4);display:flex;align-items:center;justify-content:center}.slider-btn:hover{transform:translateY(-50%) scale(1.15);box-shadow:0 12px 48px rgba(33,150,243,.6);background:linear-gradient(135deg,#1976d2 0,#0d47a1 100%)}.slider-btn:active{transform:translateY(-50%) scale(1.05)}.slider-btn .material-icons{font-size:28px}.slider-btn.prev{left:10px}.slider-btn.next{right:10px}@media (max-width:768px){.hero-content h1{font-size:2.5rem}.hero-content p{font-size:1rem}.feature-card{min-width:min(380px,85vw)}.card-image{height:280px}.section-title h2{font-size:2.2rem}.cards-slider{padding:0 50px}.slider-btn{width:45px;height:45px}.slider-btn .material-icons{font-size:24px}.nav-link{margin:0 8px}}@media (max-width:576px){.cards-slider{padding:0 40px}.slider-btn{width:40px;height:40px}.slider-btn .material-icons{font-size:20px}.hero-btn{padding:12px 30px;font-size:1rem}.card-image{height:250px}}
+    
+    
+
+
+      /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 60px 0 30px;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+        }
+
+        .footer-brand {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .footer-title {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #4fc3f7;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item .material-icons {
+            font-size: 20px;
+            color: #4fc3f7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+        }  
+    
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        
+        <div class="container">
+            <a class="navbar-brand" href="#">Jalmahakaalshakti Systems</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background:rgba(255,255,255,0.3);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="saas.html">Enter into SaaS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Smart Water Management</h1>
+            <p>Conserving water today for a sustainable tomorrow. Join us in making every drop count.</p>
+            <button class="hero-btn" >Learn More</button>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Platform Architecture & Layers</h2>
+                <p>Explore our comprehensive five-layer water management ecosystem</p>
+            </div>
+        </div>
+
+        <div class="cards-slider">
+            <button class="slider-btn prev" onclick="slideLeft()" aria-label="Previous">
+                <span class="material-icons">chevron_left</span>
+            </button>
+            
+            <div class="cards-wrapper" id="cardsWrapper">
+
+
+                <!-- IoT Layer -->
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="IoTLayer.png" alt="IoT Sensors">
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><span class="material-icons">sensors</span></div>
+                        <h3>IoT Layer</h3>
+                        <p>Intelligent Water Sensing & Control forming the foundation of our smart ecosystem. Field-deployed sensors, meters, and edge devices continuously monitor flow, pressure, water quality, and leakage in real time. Captures high-frequency, reliable data directly from pipelines, reservoirs, and distribution networks, ensuring ground-level visibility, rapid fault detection, and data-driven decision making. All collected data is securely transmitted to the cloud.</p>
+                        <span class="card-badge">Real-Time Sensing</span>
+                    </div>
+                </div>
+                <!-- GIS Layer -->
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="GISLayer.png" alt="GIS Mapping">
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><span class="material-icons">map</span></div>
+                        <h3>🗺️ GIS Layer</h3>
+                        <p>Asset & Network Visualization providing powerful spatial view of water infrastructure by mapping assets and networks in real time. Visualizes pipelines, reservoirs, pumps, valves, treatment plants, and distribution networks on interactive maps, enabling precise location-based monitoring and analysis. Combining geospatial data with live sensor inputs helps track asset health, detect leaks, analyze network connectivity, and plan maintenance efficiently.</p>
+                        <span class="card-badge">Spatial Intelligence</span>
+                    </div>
+                </div>
+
+                
+                <!-- Analytics Layer -->
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="AnalayaticLayer.png" alt="Analytics">
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><span class="material-icons">analytics</span></div>
+                        <h3>📊 Analytics Layer</h3>
+                        <p>Predictive & Anomaly Detection transforming raw water data into actionable intelligence. Using advanced AI/ML algorithms, continuously analyzes flow, pressure, quality, and consumption patterns to predict future trends and detect anomalies in real time. Enables early identification of leaks, equipment failures, abnormal usage, and quality deviations—helping operators take proactive decisions instead of reactive actions.</p>
+                        <span class="card-badge">AI/ML Powered</span>
+                    </div>
+                </div>
+
+              
+
+                <!-- Dashboard Layer -->
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="DashboardLayer.png" alt="Dashboard">
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><span class="material-icons">dashboard</span></div>
+                        <h3>🖥️ Dashboard Layer</h3>
+                        <p>Real-time Insights & Control serving as the unified command center for digital water management. Transforms real-time data from IoT devices, networks, and cloud platforms into intuitive visual dashboards. Provides live visibility into water flow, pressure, quality, energy usage, tank levels, and leak alerts, along with interactive maps and performance indicators. With role-based access and actionable controls, users can respond instantly to anomalies and optimize operations.</p>
+                        <span class="card-badge">Command Center</span>
+                    </div>
+                </div>
+
+
+
+                <!-- Cloud Layer -->
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="CloudLayer.png" alt="Cloud Platform">
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><span class="material-icons">cloud</span></div>
+                        <h3>☁️ Cloud Layer</h3>
+                        <p>Secure SaaS Platform forming the digital backbone of the water management ecosystem. Built on modern cloud architecture, enables anytime-anywhere access to dashboards, analytics, and control systems. Ensures high availability, data integrity, and cybersecurity while supporting multi-location operations. Provides centralized data management, real-time monitoring, AI/ML-driven insights, automated alerts, role-based access control, and seamless integration with government and enterprise systems.</p>
+                        <span class="card-badge">Enterprise SaaS</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-btn next" onclick="slideRight()" aria-label="Next">
+                <span class="material-icons">chevron_right</span>
+            </button>
+        </div>
+    </section>
+       <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-brand">Jalmahakaalshakti Systems</div>
+                    <p class="footer-desc">Leading provider of smart water management solutions. We combine IoT technology with sustainable practices to revolutionize water infrastructure across industries.</p>
+                    <div class="footer-social">
+                        <a href="#"><span class="material-icons">facebook</span></a>
+                        <a href="#"><span class="material-icons">link</span></a>
+                        <a href="#"><span class="material-icons">camera_alt</span></a>
+                        <a href="#"><span class="material-icons">play_arrow</span></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Useful Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News & Articles</a></li>
+                        <li><a href="#">Legal Notice</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Parent Community</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Contact Information</h4>
+                    <div class="contact-item">
+                        <span class="material-icons">mail</span>
+                        <span>Feel free to contact & reach us !!</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="material-icons" >location_on</span>
+                        <span>Telangana, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="material-icons">phone</span>
+                        <span>+91 83338 97440</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="material-icons">email</span>
+                        <span>info@jalmahakaalshakti.in</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                Copyright © 2025 Jalmahakaalshakti Systems. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const wrapper=document.getElementById('cardsWrapper');function slideLeft(){wrapper.scrollBy({left:-560,behavior:'smooth'})}function slideRight(){wrapper.scrollBy({left:560,behavior:'smooth'})}let isDown=!1,startX,scrollLeft;wrapper.addEventListener('mousedown',e=>{isDown=!0;startX=e.pageX-wrapper.offsetLeft;scrollLeft=wrapper.scrollLeft});wrapper.addEventListener('mouseleave',()=>{isDown=!1});wrapper.addEventListener('mouseup',()=>{isDown=!1});wrapper.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-wrapper.offsetLeft,walk=(x-startX)*2;wrapper.scrollLeft=scrollLeft-walk});window.addEventListener('scroll',()=>{const navbar=document.querySelector('.navbar');navbar.classList.toggle('scrolled',window.scrollY>50)});
+    </script>
+</body>
+</html>

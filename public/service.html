@@ -1,0 +1,958 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Jalmahakaalshakti Systems</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Consistent Navbar across all pages */
+       .navbar{background:transparent!important;position:fixed;width:100%;z-index:1000;padding:20px 0;transition:background .3s ease;}
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #4fc3f7 !important;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #4fc3f7;
+        }
+
+        .cta-btn-nav {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff5722 0%, #f44336 100%);
+            color: #fff !important;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 70vh;
+            background: linear-gradient(rgba(10, 14, 39, 0.8), rgba(26, 31, 58, 0.8)), 
+                        url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&h=900&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: -2px;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-label {
+            text-align: center;
+            color: #4fc3f7;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 80px;
+            letter-spacing: -2px;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #4fc3f7 0%, #2196f3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #1e293b 0%, #1a2332 100%);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(79, 195, 247, 0.3);
+            box-shadow: 0 20px 60px rgba(33, 150, 243, 0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.5);
+        }
+
+        .service-icon .material-icons {
+            font-size: 40px;
+            color: #fff;
+        }
+
+        .service-card h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: #94a3b8;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #ff5722 0%, #f44336 100%);
+            padding: 50px;
+            border-radius: 30px;
+            margin: 80px auto;
+            max-width: 1400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 20px 60px rgba(255, 87, 34, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+        }
+
+        .cta-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cta-icon .material-icons {
+            font-size: 36px;
+            color: #fff;
+        }
+
+        .cta-text h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cta-text h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .cta-description {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            max-width: 400px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .appointment-btn {
+            padding: 16px 40px;
+            background: #fff;
+            color: #f44336;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .appointment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Process Section with Curved Style */
+        .process-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.5) 100%);
+            position: relative;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(33, 150, 243, 0.1) 0%, transparent 100%);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(79, 195, 247, 0.3) 10%, 
+                rgba(79, 195, 247, 0.6) 50%, 
+                rgba(79, 195, 247, 0.3) 90%, 
+                transparent 100%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .step-circle {
+            width: 270px;
+            height: 270px;
+            background: linear-gradient(145deg, #1e293b 0%, #1a2332 100%);
+            border-radius: 50%;
+            border: 3px solid rgba(79, 195, 247, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-circle:hover {
+            border-color: #4fc3f7;
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 20px 60px rgba(79, 195, 247, 0.4);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            text-align: center;
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+
+        /* Industries Section */
+        .industries-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .industry-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(26, 35, 50, 0.6) 100%);
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(79, 195, 247, 0.3);
+            box-shadow: 0 15px 40px rgba(33, 150, 243, 0.2);
+        }
+
+        .industry-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .industry-icon .material-icons {
+            font-size: 32px;
+            color: #fff;
+        }
+
+        .industry-card h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .industry-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 60px 0 30px;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+        }
+
+        .footer-brand {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .footer-title {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #4fc3f7;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item .material-icons {
+            font-size: 20px;
+            color: #4fc3f7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 50vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+                padding: 40px 30px;
+            }
+            
+            .cta-description {
+                max-width: 100%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .industries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-link {
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Consistent Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Jalmahakaalshakti Systems</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background:rgba(255,255,255,0.3);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="saas.html">Enter into SaaS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Our Services</h1>
+            <p>Comprehensive water management solutions powered by cutting-edge IoT technology</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-label">WHAT WE OFFER</div>
+            <h2 class="section-title"><span>Platform</span> Architecture & Layers</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">map</span>
+                    </div>
+                    <h3>🗺️ GIS Layer</h3>
+                    <p>Asset & Network Visualization providing spatial intelligence for water infrastructure monitoring and analysis</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">sensors</span>
+                    </div>
+                    <h3>📡 IoT Layer</h3>
+                    <p>Intelligent Water Sensing & Control with real-time monitoring of flow, pressure, and quality</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">analytics</span>
+                    </div>
+                    <h3>📊 Analytics Layer</h3>
+                    <p>Predictive & Anomaly Detection using advanced AI/ML algorithms for proactive decision making</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">cloud</span>
+                    </div>
+                    <h3>☁️ Cloud Platform</h3>
+                    <p>Secure SaaS solution with enterprise-grade security, scalability, and 24/7 accessibility</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">dashboard</span>
+                    </div>
+                    <h3>🖥️ Dashboard Layer</h3>
+                    <p>Real-time Insights & Control center for unified water management operations</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">settings</span>
+                    </div>
+                    <h3>⚙️ Infrastructure</h3>
+                    <p>Complete Management System for water distribution networks and treatment facilities</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">handshake</span>
+                    </div>
+                    <h3>🤝 Consulting</h3>
+                    <p>Expert Advisory services for water infrastructure optimization and sustainability</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <span class="material-icons">trending_up</span>
+                    </div>
+                    <h3>📈 Data Analysis</h3>
+                    <p>Performance Insights through comprehensive analytics and reporting solutions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="container">
+            <div class="cta-banner">
+                <div class="cta-content">
+                    <div class="cta-icon">
+                        <span class="material-icons">phone_in_talk</span>
+                    </div>
+                    <div class="cta-text">
+                        <h3>GET A FREE CONSULTATION</h3>
+                        <h2>+91 8333897440</h2>
+                    </div>
+                </div>
+                <div class="cta-description">
+                    <p>Transform your water infrastructure with our cutting-edge IoT solutions. Expert consultation available 24/7 for all your water management needs.</p>
+                </div>
+                <a href="contact.html"><button class="appointment-btn">MAKE APPOINTMENT</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-label">OUR METHODOLOGY</div>
+            <h2 class="section-title"><span>Process</span> We Follow</h2>
+            
+            <div class="process-steps">
+                <div class="step-circle">
+                    <div class="step-number">01</div>
+                    <div class="step-title">Research Project</div>
+                    <div class="step-desc">Comprehensive analysis of water infrastructure and optimization opportunities</div>
+                </div>
+
+                <div class="step-circle">
+                    <div class="step-number">02</div>
+                    <div class="step-title">Evaluate Plans</div>
+                    <div class="step-desc">Design custom IoT solutions tailored to specific requirements</div>
+                </div>
+
+                <div class="step-circle">
+                    <div class="step-number">03</div>
+                    <div class="step-title">Best Results</div>
+                    <div class="step-desc">Deploy systems and achieve measurable water and cost savings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="industries-section">
+        <div class="container">
+            <div class="section-label">OUR TECHNOLOGY IS DESIGNED TO SERVE </div>
+            <h2 class="section-title"><span>Industries</span> & Sectors</h2>
+            
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <span class="material-icons">account_balance</span>
+                    </div>
+                    <h4>Government & Municipal Bodies</h4>
+                    <p>Smart city water management solutions for municipal corporations and government departments</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <span class="material-icons">water_drop</span>
+                    </div>
+                    <h4>Water Supply & Irrigation Departments</h4>
+                    <p>Advanced monitoring systems for water distribution networks and irrigation infrastructure</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <span class="material-icons">engineering</span>
+                    </div>
+                    <h4>EPC & Infrastructure Companies</h4>
+                    <p>Integrated solutions for engineering, procurement, and construction projects</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <span class="material-icons">agriculture</span>
+                    </div>
+                    <h4>Agriculture & Smart Farming</h4>
+                    <p>Precision irrigation and water management systems for sustainable agriculture</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <span class="material-icons">factory</span>
+                    </div>
+                    <h4>Industries & Utilities</h4>
+                    <p>Water efficiency solutions for manufacturing plants and utility providers</p>
+                </div>
+
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <span class="material-icons">volunteer_activism</span>
+                    </div>
+                    <h4>NGOs & Development Organizations</h4>
+                    <p>Community water projects and sustainable development initiatives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-brand">Jalmahakaalshakti Systems</div>
+                    <p class="footer-desc">Leading provider of smart water management solutions. We combine IoT technology with sustainable practices to revolutionize water infrastructure across industries.</p>
+                    <div class="footer-social">
+                        <a href="#"><span class="material-icons">facebook</span></a>
+                        <a href="#"><span class="material-icons">link</span></a>
+                        <a href="#"><span class="material-icons">camera_alt</span></a>
+                        <a href="#"><span class="material-icons">play_arrow</span></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Useful Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News & Articles</a></li>
+                        <li><a href="#">Legal Notice</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Parent Community</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Contact Information</h4>
+                    <div class="contact-item">
+                        <span class="material-icons">mail</span>
+                        <span>Feel free to contact & reach us !!</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="material-icons" >location_on</span>
+                        <span>Telangana, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="material-icons">phone</span>
+                        <span>+91 83338 97440</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="material-icons">email</span>
+                        <span>info@jalmahakaalshakti.in</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                Copyright © 2025 Jalmahakaalshakti Systems. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
